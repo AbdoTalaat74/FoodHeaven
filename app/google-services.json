@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "170278521410",
+    "project_id": "food-heaven-ea4b5",
+    "storage_bucket": "food-heaven-ea4b5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170278521410:android:c86ce50b1b04f2be997bdb",
+        "android_client_info": {
+          "package_name": "com.mohamed.foodorder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLZrum7hD286kROtKQ7hT69vAiPQrTFNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
