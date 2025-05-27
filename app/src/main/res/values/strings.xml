@@ -16,4 +16,18 @@
     <string name="customer_support">Customer Support</string>
     <string name="help_text">Have a Problem? Talk to us for the answer</string>
     <string name="chatbot_will_be_available_in_second_version_n_keep_updated">ChatBot will be available in our second version \\n keep updated</string>
+    <string-array name="user_roles">
+        <item>Customer</item>
+        <item>Restaurant</item>
+    </string-array>
+    <string-array name="meal_categories">
+        <item>Pizza</item>
+        <item>Burger</item>
+        <item>Chicken</item>
+        <item>HotDog</item>
+        <item>Sushi</item>
+        <item>Meat</item>
+        <item>Drink</item>
+        <item>More</item>
+    </string-array>
 </resources>

@@ -1,13 +1,14 @@
 package com.mohamed.foodorder.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.mohamed.foodorder.R;
@@ -15,14 +16,13 @@ import com.mohamed.foodorder.databinding.ViewholderCartBinding;
 import com.mohamed.foodorder.domain.FoodDomain;
 import com.mohamed.foodorder.helper.ChangeNumberItemsListner;
 import com.mohamed.foodorder.helper.ManagementCart;
-
 import java.util.ArrayList;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartListViewHolder> {
 
-    ArrayList<FoodDomain> listFoodSelected;
+    private ArrayList<FoodDomain> listFoodSelected;
     private ManagementCart managementCart;
-    ChangeNumberItemsListner changeNumberItemsListner;
+    private ChangeNumberItemsListner changeNumberItemsListner;
 
     public CartListAdapter(ArrayList<FoodDomain> listFoodSelected, Context context, ChangeNumberItemsListner changeNumberItemsListner) {
         this.listFoodSelected = listFoodSelected;
@@ -39,20 +39,26 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
 
     @Override
     public void onBindViewHolder(@NonNull CartListViewHolder holder, int position) {
-        holder.binding.itemName.setText(listFoodSelected.get(position).getTitle());
-        holder.binding.fee.setText("$" + listFoodSelected.get(position).getPrice());
-        holder.binding.total.setText("$" + Math.round(listFoodSelected.get(position).getNumberInCart() * listFoodSelected.get(position).getPrice()));
-        holder.binding.quantity.setText(String.valueOf(listFoodSelected.get(position).getNumberInCart()));
+        FoodDomain food = listFoodSelected.get(position);
+        holder.binding.itemName.setText(food.getTitle());
+        holder.binding.fee.setText(String.format("$%.2f", food.getPrice()));
+        holder.binding.total.setText(String.format("$%.2f", food.getNumberInCart() * food.getPrice()));
+        holder.binding.quantity.setText(String.valueOf(food.getNumberInCart()));
 
-        int drawableResourceId = holder.binding.getRoot().getContext().getResources().getIdentifier(
-                listFoodSelected.get(position).getPicUrl(),
-                "drawable",
-                holder.binding.getRoot().getContext().getPackageName()
-        );
-        Glide.with(holder.binding.getRoot().getContext())
-                .load(drawableResourceId)
-                .transform(new GranularRoundedCorners(30, 30, 30, 30))
-                .into(holder.binding.foodItem);
+        // Decode Base64 image
+        try {
+            byte[] decodedBytes = Base64.decode(food.getPicUrl(), Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+            Glide.with(holder.binding.getRoot().getContext())
+                    .load(bitmap)
+                    .transform(new GranularRoundedCorners(30, 30, 30, 30))
+                    .into(holder.binding.foodItem);
+        } catch (Exception e) {
+            Glide.with(holder.binding.getRoot().getContext())
+                    .load(R.drawable.placeholder_image)
+                    .transform(new GranularRoundedCorners(30, 30, 30, 30))
+                    .into(holder.binding.foodItem);
+        }
 
         holder.binding.plus.setOnClickListener(v -> {
             managementCart.plusNumberFood(listFoodSelected, position, () -> {
@@ -67,17 +73,14 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
                 changeNumberItemsListner.onChanged();
             });
         });
-
-
     }
-
 
     @Override
     public int getItemCount() {
         return listFoodSelected.size();
     }
 
-    public class CartListViewHolder extends RecyclerView.ViewHolder {
+    public static class CartListViewHolder extends RecyclerView.ViewHolder {
         ViewholderCartBinding binding;
 
         public CartListViewHolder(@NonNull View itemView) {

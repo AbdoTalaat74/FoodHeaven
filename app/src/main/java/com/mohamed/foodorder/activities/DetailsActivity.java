@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import com.bumptech.glide.Glide;
-import com.mohamed.foodorder.R;
 import com.mohamed.foodorder.databinding.ActivityDetailsBinding;
 import com.mohamed.foodorder.domain.FoodDomain;
 import com.mohamed.foodorder.helper.ManagementCart;
@@ -42,8 +41,6 @@ public class DetailsActivity extends AppCompatActivity {
         binding.itemPrice.setText("$" + object.getPrice());
         binding.description.setText(object.getDescription());
         binding.quantity.setText(String.valueOf(numberOrder));
-        binding.tvEnergy.setText(object.getEnergy() + " Cal");
-        binding.tvRate.setText(String.valueOf(object.getScore()));
         binding.tvTime.setText(object.getTime() + " min");
         binding.addToCart.setText("Add to cart - $" + Math.round(numberOrder * object.getPrice()));
 

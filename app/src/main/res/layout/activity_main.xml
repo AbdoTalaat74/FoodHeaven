@@ -462,11 +462,12 @@
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_gravity="bottom"
             android:background="@color/white">
 
             <LinearLayout
+                android:paddingTop="@dimen/_4sdp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">

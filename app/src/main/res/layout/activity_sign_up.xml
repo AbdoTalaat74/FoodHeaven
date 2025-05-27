@@ -77,11 +77,30 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
+    <TextView
+        android:id="@+id/role_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/repassword"
+        android:layout_margin="10dp"
+        android:text="User Role"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/role_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/role_label"
+        android:layout_margin="10dp"
+        android:background="#30ffffff"
+        android:padding="10dp" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signupbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/repassword"
+        android:layout_below="@id/role_spinner"
         android:layout_centerHorizontal="true"
         android:layout_margin="15dp"
         android:backgroundTint="@color/design_default_color_secondary"
