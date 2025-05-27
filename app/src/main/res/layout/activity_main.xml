@@ -148,6 +148,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:layout_height="match_parent"
 
                     android:orientation="horizontal">
@@ -247,7 +249,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="80dp"
+                        android:layout_height="match_parent"
                         android:layout_margin="8dp"
                         android:layout_weight=".25"
                         android:background="@drawable/cetegory_background">
@@ -280,6 +282,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:layout_height="match_parent"
 
                     android:orientation="horizontal">
@@ -379,7 +383,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="80dp"
+                        android:layout_height="match_parent"
                         android:layout_margin="8dp"
                         android:layout_weight=".25"
                         android:background="@drawable/cetegory_background">
@@ -462,14 +466,18 @@
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_gravity="bottom"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:gravity="center">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_4sdp">
 
                 <LinearLayout
                     android:id="@+id/home_menu"

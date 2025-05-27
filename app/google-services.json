@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "170278521410",
+    "firebase_url": "https://food-heaven-ea4b5-default-rtdb.firebaseio.com",
     "project_id": "food-heaven-ea4b5",
     "storage_bucket": "food-heaven-ea4b5.firebasestorage.app"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.mohamed.foodorder"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "170278521410-6tnlfndbgd6i1kndp252e5078ms2k4tk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDLZrum7hD286kROtKQ7hT69vAiPQrTFNA"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170278521410-6tnlfndbgd6i1kndp252e5078ms2k4tk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -17,7 +17,7 @@
         android:layout_above="@id/card_view"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="28dp">
+        android:padding="@dimen/_28sdp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
             android:fontFamily="sans-serif-medium"
             android:text="FOOD Heaven"
             android:textColor="@color/white"
-            android:textSize="32sp"
+            android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -40,20 +40,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:cardCornerRadius="28dp">
+        app:cardCornerRadius="@dimen/_28sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="28dp">
+            android:padding="@dimen/_20sdp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Welcome"
                 android:textColor="@color/my_primary"
-                android:textSize="32sp"
+                android:textSize="@dimen/_24ssp"
                 android:textStyle="bold" />
 
             <TextView
@@ -64,7 +64,7 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="30dp" />
+                android:layout_height="@dimen/_16sdp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="20dp" />
+                android:layout_height="@dimen/_16sdp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,21 +121,23 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="10dp" />
+                android:layout_height="@dimen/_10sdp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/login"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_36sdp"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:text="Login"
-                app:cornerRadius="32dp" />
+                app:cornerRadius="@dimen/_32sdp" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="10dp" />
+                android:layout_height="@dimen/_10sdp" />
 
             <TextView
-                android:id="@+id/go_to_login"
+                android:id="@+id/go_to_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -146,7 +148,7 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="10dp" />
+                android:layout_height="@dimen/_10sdp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -163,23 +165,23 @@
 
                 <ImageView
                     android:id="@+id/facebook"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="12dp"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_margin="@dimen/_8sdp"
                     android:background="@drawable/facebook" />
 
                 <ImageView
                     android:id="@+id/twitter"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="12dp"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_margin="@dimen/_8sdp"
                     android:background="@drawable/twitter" />
 
                 <ImageView
                     android:id="@+id/github"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="12dp"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_margin="@dimen/_8sdp"
                     android:background="@drawable/github" />
 
             </LinearLayout>

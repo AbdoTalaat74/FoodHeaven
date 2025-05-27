@@ -1,56 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fillViewport="true">
-
+    android:background="?attr/colorSurface"
+    android:fillViewport="true"
+    tools:context=".activities.UserActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_16sdp">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarUserAccount"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorSurface"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
                 <ImageView
                     android:id="@+id/imageCloseUserAccount"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_close"
+                    android:contentDescription="Close"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/black" />
-
+                    app:tint="?attr/colorOnSurface" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
+                    android:layout_marginStart="@dimen/_25sdp"
                     android:fontFamily="@font/poppins_light"
-                    android:text="My account"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:text="My Account"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="@dimen/_16ssp"
                     app:layout_constraintBottom_toBottomOf="@id/imageCloseUserAccount"
-                    app:layout_constraintStart_toStartOf="@id/imageCloseUserAccount"
+                    app:layout_constraintStart_toEndOf="@id/imageCloseUserAccount"
                     app:layout_constraintTop_toTopOf="@id/imageCloseUserAccount" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <ProgressBar
             android:id="@+id/progressbarAccount"
@@ -64,105 +63,132 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageUser"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:layout_marginTop="24dp"
-            android:src="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/rightGuideline"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="@id/leftGuideline"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarUserAccount" />
+            android:layout_width="@dimen/_85sdp"
+            android:layout_height="@dimen/_85sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:src="@drawable/placeholder_image"
+            android:contentDescription="User profile image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarUserAccount" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/imageEdit"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="50dp"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
             android:background="@drawable/settings_items_background"
-            android:backgroundTint="@color/yellow"
             android:src="@drawable/ic_edit"
+            android:contentDescription="Edit profile image"
             app:layout_constraintBottom_toBottomOf="@id/imageUser"
             app:layout_constraintEnd_toEndOf="@id/imageUser" />
 
-        <EditText
-            android:id="@+id/edFirstName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstNameLayout"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/white_background"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
             android:hint="First Name"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideline"
-            app:layout_constraintTop_toBottomOf="@+id/imageUser" />
+            app:layout_constraintEnd_toStartOf="@id/rightGuideline"
+            app:layout_constraintStart_toStartOf="@id/leftGuideline"
+            app:layout_constraintTop_toBottomOf="@id/imageUser">
 
-        <EditText
-            android:id="@+id/edLastName"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:inputType="textCapWords"
+                android:textSize="@dimen/_14ssp"
+                android:contentDescription="Enter first name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lastNameLayout"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/white_background"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
             android:hint="Last Name"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/rightGuideline"
+            app:layout_constraintEnd_toStartOf="@id/rightGuideline"
             app:layout_constraintStart_toStartOf="@id/leftGuideline"
-            app:layout_constraintTop_toBottomOf="@id/edFirstName" />
+            app:layout_constraintTop_toBottomOf="@id/firstNameLayout">
 
-        <EditText
-            android:id="@+id/edEmail"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:inputType="textCapWords"
+                android:textSize="@dimen/_14ssp"
+                android:contentDescription="Enter last name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailLayout"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/white_background"
-            android:fontFamily="@font/poppins_light"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
             android:hint="Email"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/rightGuideline"
+            app:layout_constraintEnd_toStartOf="@id/rightGuideline"
             app:layout_constraintStart_toStartOf="@id/leftGuideline"
-            app:layout_constraintTop_toBottomOf="@id/edLastName" />
+            app:layout_constraintTop_toBottomOf="@id/lastNameLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:inputType="textEmailAddress"
+                android:textSize="@dimen/_14ssp"
+                android:contentDescription="Enter email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/locationLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:hint="Location"
+            app:layout_constraintEnd_toStartOf="@id/rightGuideline"
+            app:layout_constraintStart_toStartOf="@id/leftGuideline"
+            app:layout_constraintTop_toBottomOf="@id/emailLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:inputType="textPostalAddress"
+                android:textSize="@dimen/_14ssp"
+                android:contentDescription="Enter location" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvUpdatePassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Forgot/Change password"
-            android:textColor="@color/grayish_brown"
-            android:textSize="15sp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="Forgot/Change Password"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
+            android:contentDescription="Change password"
             app:layout_constraintStart_toStartOf="@id/leftGuideline"
-            app:layout_constraintTop_toBottomOf="@+id/edEmail" />
+            app:layout_constraintTop_toBottomOf="@id/locationLayout" />
 
-        <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSave"
-            style="@style/coloredButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
             android:fontFamily="@font/poppins_light"
             android:text="Save"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/rightGuideline"
+            app:layout_constraintEnd_toStartOf="@id/rightGuideline"
             app:layout_constraintStart_toStartOf="@id/leftGuideline"
-            app:layout_constraintTop_toBottomOf="@+id/tvUpdatePassword" />
+            app:layout_constraintTop_toBottomOf="@id/tvUpdatePassword" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/leftGuideline"
@@ -177,6 +203,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.96" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
