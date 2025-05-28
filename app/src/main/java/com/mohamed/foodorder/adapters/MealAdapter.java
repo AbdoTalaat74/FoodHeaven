@@ -1,5 +1,6 @@
 package com.mohamed.foodorder.adapters;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -11,8 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mohamed.foodorder.R;
+import com.mohamed.foodorder.activities.DetailsActivity;
 import com.mohamed.foodorder.domain.models.Meal;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +47,12 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         } else {
             holder.image.setImageResource(R.drawable.fast_1); // Fallback from XML
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(), DetailsActivity.class);
+            intent.putExtra("object", meal);
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
 
     @Override

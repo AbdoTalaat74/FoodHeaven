@@ -191,7 +191,7 @@ public class EditMealActivity extends AppCompatActivity {
             }
         }
 
-        Meal updatedMeal = new Meal(mealId, name, priceValue, description, imageBase64, imageDrawable, category, ratingValue, deliveryTimeValue);
+        Meal updatedMeal = new Meal(mealId, name, priceValue, description, imageBase64, imageDrawable, category, ratingValue, deliveryTimeValue,100);
         db.child("restaurants").child(restaurantId).child("mealsList").child(mealId).setValue(updatedMeal)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Meal updated", Toast.LENGTH_SHORT).show();

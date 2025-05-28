@@ -12,10 +12,12 @@ public class Meal implements Serializable {
     private String category;
     private double rating;
     private int deliveryTime;
+    private int numberInCart;
+
 
     public Meal() {}
 
-    public Meal(String id, String name, double price, String description, String imageBase64, String imageDrawable, String category, double rating, int deliveryTime) {
+    public Meal(String id, String name, double price, String description, String imageBase64, String imageDrawable, String category, double rating, int deliveryTime, int numberInCart) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -25,6 +27,8 @@ public class Meal implements Serializable {
         this.category = category;
         this.rating = rating;
         this.deliveryTime = deliveryTime;
+        this.numberInCart = numberInCart;
+
     }
 
     public String getId() { return id; }
@@ -45,4 +49,12 @@ public class Meal implements Serializable {
     public void setRating(double rating) { this.rating = rating; }
     public int getDeliveryTime() { return deliveryTime; }
     public void setDeliveryTime(int deliveryTime) { this.deliveryTime = deliveryTime; }
+
+    public int getNumberInCart() {
+        return numberInCart;
+    }
+
+    public void setNumberInCart(int numberInCart) {
+        this.numberInCart = numberInCart;
+    }
 }

@@ -1,18 +1,20 @@
 package com.mohamed.foodorder.activities;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.util.Base64;
+import android.view.LayoutInflater;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-
-import com.bumptech.glide.Glide;
+import com.mohamed.foodorder.R;
 import com.mohamed.foodorder.databinding.ActivityDetailsBinding;
-import com.mohamed.foodorder.domain.FoodDomain;
+import com.mohamed.foodorder.domain.models.Meal;
 import com.mohamed.foodorder.helper.ManagementCart;
 
 public class DetailsActivity extends AppCompatActivity {
     private ActivityDetailsBinding binding;
-    private FoodDomain object;
+    private Meal object;
     private int numberOrder = 1;
     private ManagementCart managementCart;
 
@@ -26,22 +28,24 @@ public class DetailsActivity extends AppCompatActivity {
         binding.ivBackArrow.setOnClickListener(v -> {
             finish();
         });
-
     }
 
     private void getBundle() {
-        object = (FoodDomain) getIntent().getSerializableExtra("object");
+        object = (Meal) getIntent().getSerializableExtra("object");
 
-        int drawableResourceId = this.getResources().getIdentifier(object.getPicUrl(), "drawable", this.getPackageName());
-        Glide.with(this)
-                .load(drawableResourceId)
-                .into(binding.ivItem);
+        if (object.getImageBase64() != null && !object.getImageBase64().isEmpty()) {
+            byte[] decodedBytes = Base64.decode(object.getImageBase64(), Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+            binding.ivItem.setImageBitmap(bitmap);
+        } else {
+            binding.ivItem.setImageResource(R.drawable.fast_1); // Fallback image
+        }
 
-        binding.itemName.setText(object.getTitle());
+        binding.itemName.setText(object.getName());
         binding.itemPrice.setText("$" + object.getPrice());
         binding.description.setText(object.getDescription());
         binding.quantity.setText(String.valueOf(numberOrder));
-        binding.tvTime.setText(object.getTime() + " min");
+        binding.tvTime.setText(object.getDeliveryTime() + " min");
         binding.addToCart.setText("Add to cart - $" + Math.round(numberOrder * object.getPrice()));
 
         binding.plusQuantity.setOnClickListener(v -> {
@@ -51,15 +55,16 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
         binding.minusQuantity.setOnClickListener(v -> {
-            numberOrder = numberOrder - 1;
-            binding.quantity.setText(String.valueOf(numberOrder));
-            binding.addToCart.setText("Add to cart - $" + Math.round(numberOrder * object.getPrice()));
+            if (numberOrder > 1) {
+                numberOrder = numberOrder - 1;
+                binding.quantity.setText(String.valueOf(numberOrder));
+                binding.addToCart.setText("Add to cart - $" + Math.round(numberOrder * object.getPrice()));
+            }
         });
 
         binding.addToCart.setOnClickListener(v -> {
             object.setNumberInCart(numberOrder);
             managementCart.insertFood(object);
         });
-
     }
 }

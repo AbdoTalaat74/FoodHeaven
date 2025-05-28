@@ -2,14 +2,10 @@ package com.mohamed.foodorder.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-
-import com.mohamed.foodorder.R;
 import com.mohamed.foodorder.adapters.CartListAdapter;
 import com.mohamed.foodorder.databinding.ActivityCartBinding;
 import com.mohamed.foodorder.helper.ChangeNumberItemsListner;
@@ -65,10 +61,10 @@ public class CartActivity extends AppCompatActivity {
     private void calculateCart() {
         double percentTax = 0.02;
         double delivery = 10;
-        tax = Math.round((managementCart.getFee() * percentTax * 100.0)) / 100;
+        tax = Math.round((managementCart.getTotalFee() * percentTax * 100.0)) / 100;
 
-        double total = Math.round((managementCart.getFee() + tax + delivery) * 100.0) / 100;
-        double itemTotal = Math.round(managementCart.getFee() * 100.0) / 100.0;
+        double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100.0) / 100;
+        double itemTotal = Math.round(managementCart.getTotalFee() * 100.0) / 100.0;
 
         binding.subTotal.setText("$" + itemTotal);
         binding.totalTax.setText("$" + tax);

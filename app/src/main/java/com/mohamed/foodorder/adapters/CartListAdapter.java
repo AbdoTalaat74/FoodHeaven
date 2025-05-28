@@ -13,18 +13,18 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.mohamed.foodorder.R;
 import com.mohamed.foodorder.databinding.ViewholderCartBinding;
-import com.mohamed.foodorder.domain.FoodDomain;
+import com.mohamed.foodorder.domain.models.Meal;
 import com.mohamed.foodorder.helper.ChangeNumberItemsListner;
 import com.mohamed.foodorder.helper.ManagementCart;
 import java.util.ArrayList;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartListViewHolder> {
 
-    private ArrayList<FoodDomain> listFoodSelected;
+    private ArrayList<Meal> listFoodSelected;
     private ManagementCart managementCart;
     private ChangeNumberItemsListner changeNumberItemsListner;
 
-    public CartListAdapter(ArrayList<FoodDomain> listFoodSelected, Context context, ChangeNumberItemsListner changeNumberItemsListner) {
+    public CartListAdapter(ArrayList<Meal> listFoodSelected, Context context, ChangeNumberItemsListner changeNumberItemsListner) {
         this.listFoodSelected = listFoodSelected;
         managementCart = new ManagementCart(context);
         this.changeNumberItemsListner = changeNumberItemsListner;
@@ -39,15 +39,15 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
 
     @Override
     public void onBindViewHolder(@NonNull CartListViewHolder holder, int position) {
-        FoodDomain food = listFoodSelected.get(position);
-        holder.binding.itemName.setText(food.getTitle());
+        Meal food = listFoodSelected.get(position);
+        holder.binding.itemName.setText(food.getName());
         holder.binding.fee.setText(String.format("$%.2f", food.getPrice()));
         holder.binding.total.setText(String.format("$%.2f", food.getNumberInCart() * food.getPrice()));
         holder.binding.quantity.setText(String.valueOf(food.getNumberInCart()));
 
         // Decode Base64 image
         try {
-            byte[] decodedBytes = Base64.decode(food.getPicUrl(), Base64.DEFAULT);
+            byte[] decodedBytes = Base64.decode(food.getImageBase64(), Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
             Glide.with(holder.binding.getRoot().getContext())
                     .load(bitmap)
