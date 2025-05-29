@@ -11,7 +11,8 @@ import android.view.WindowManager;
 
 import com.mohamed.foodorder.adapters.CartListAdapter;
 import com.mohamed.foodorder.databinding.ActivityCartBinding;
-import com.mohamed.foodorder.helper.ChangeNumberItemsListner;
+import com.mohamed.foodorder.domain.models.CartItem;
+import com.mohamed.foodorder.helper.ChangeNumberItemsListener;
 import com.mohamed.foodorder.helper.ManagementCart;
 
 public class CartActivity extends AppCompatActivity {
@@ -20,6 +21,8 @@ public class CartActivity extends AppCompatActivity {
     private CartListAdapter cartListAdapter;
     private ManagementCart managementCart;
     private double tax;
+    private double deliveryFee = 10.0;
+    private double percentTax = 0.02;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,50 +33,58 @@ public class CartActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         managementCart = new ManagementCart(this);
-        initList();
-        calculateCart();
         setVariable();
-
+        initList();
     }
 
     private void setVariable() {
-        binding.back.setOnClickListener(v -> {
-            finish();
+        binding.back.setOnClickListener(v -> finish());
+        binding.order.setOnClickListener(v -> {
+            managementCart.placeOrder(tax, deliveryFee, (success, message) -> {
+                if (success) {
+                    initList();
+                }
+            });
         });
     }
 
-
     private void initList() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        binding.cartList.setLayoutManager(linearLayoutManager);
-        cartListAdapter = new CartListAdapter(managementCart.getListCart(), this, new ChangeNumberItemsListner() {
-            @Override
-            public void onChanged() {
-                calculateCart();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        binding.cartList.setLayoutManager(layoutManager);
+
+        managementCart.getListCart(cartItems -> {
+            cartListAdapter = new CartListAdapter(cartItems, this, new ChangeNumberItemsListener() {
+                @Override
+                public void onChanged() {
+                    calculateCart();
+                }
+            });
+            binding.cartList.setAdapter(cartListAdapter);
+
+            if (cartItems.isEmpty()) {
+                binding.emptyCart.setVisibility(View.VISIBLE);
+                binding.scrollView.setVisibility(View.GONE);
+            } else {
+                binding.emptyCart.setVisibility(View.GONE);
+                binding.scrollView.setVisibility(View.VISIBLE);
             }
+
+            calculateCart();
         });
-        binding.cartList.setAdapter(cartListAdapter);
-        if (managementCart.getListCart().isEmpty()) {
-            binding.emptyCart.setVisibility(View.VISIBLE);
-            binding.scrollView.setVisibility(View.GONE);
-        }
-        {
-            binding.emptyCart.setVisibility(View.GONE);
-            binding.emptyCart.setVisibility(View.VISIBLE);
-        }
     }
 
     private void calculateCart() {
-        double percentTax = 0.02;
-        double delivery = 10;
-        tax = Math.round((managementCart.getTotalFee() * percentTax * 100.0)) / 100;
-
-        double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100.0) / 100;
-        double itemTotal = Math.round(managementCart.getTotalFee() * 100.0) / 100.0;
-
-        binding.subTotal.setText("$" + itemTotal);
-        binding.totalTax.setText("$" + tax);
-        binding.delivery.setText("$" + delivery);
-        binding.total.setText("$" + total);
+        managementCart.getListCart(cartItems -> {
+            double itemTotal = 0.0;
+            for (CartItem item : cartItems) {
+                itemTotal += item.getPrice() * item.getQuantity();
+            }
+            tax = Math.round(itemTotal * percentTax * 100.0) / 100.0;
+            double total = Math.round((itemTotal + tax + deliveryFee) * 100.0) / 100.0;
+            binding.subTotal.setText(String.format("$%.2f", itemTotal));
+            binding.totalTax.setText(String.format("$%.2f", tax));
+            binding.delivery.setText(String.format("$%.2f", deliveryFee));
+            binding.total.setText(String.format("$%.2f", total));
+        });
     }
 }

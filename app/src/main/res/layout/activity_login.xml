@@ -182,7 +182,7 @@
                     android:layout_width="@dimen/_28sdp"
                     android:layout_height="@dimen/_28sdp"
                     android:layout_margin="@dimen/_8sdp"
-                    android:background="@drawable/github" />
+                    android:background="@drawable/google" />
 
             </LinearLayout>
         </LinearLayout>

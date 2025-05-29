@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
         findViewById(R.id.facebook).setOnClickListener(v -> Toast.makeText(this, "Facebook login not implemented", Toast.LENGTH_SHORT).show());
         findViewById(R.id.twitter).setOnClickListener(v -> Toast.makeText(this, "Twitter login not implemented", Toast.LENGTH_SHORT).show());
-        findViewById(R.id.github).setOnClickListener(v -> Toast.makeText(this, "GitHub login not implemented", Toast.LENGTH_SHORT).show());
+        findViewById(R.id.github).setOnClickListener(v -> Toast.makeText(this, "Google login not implemented", Toast.LENGTH_SHORT).show());
     }
 
     private void loginUser() {

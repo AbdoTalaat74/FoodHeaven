@@ -22,7 +22,6 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     private List<Meal> mealList = new ArrayList<>();
     private final int viewType;
 
-    // View type constants
     public static final int VIEW_TYPE_MAIN = 0;
     public static final int VIEW_TYPE_CATEGORY = 1;
 
@@ -84,7 +83,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
                 Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
                 holder.image.setImageBitmap(bitmap);
             } else {
-                holder.image.setImageResource(R.drawable.placeholder_image); // Updated to match layout
+                holder.image.setImageResource(R.drawable.placeholder_image);
             }
         } else {
             Log.e("MealAdapter", "image ImageView is null for viewType: " + viewType);
@@ -109,12 +108,12 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         public MealViewHolder(@NonNull View itemView, int viewType) {
             super(itemView);
             if (viewType == VIEW_TYPE_MAIN) {
-                image = itemView.findViewById(R.id.item_pic);
-                title = itemView.findViewById(R.id.item_title);
-                time = itemView.findViewById(R.id.tv_time);
-                score = itemView.findViewById(R.id.score);
-                price = itemView.findViewById(R.id.price);
-                description = null; // No description in viewholder_food_list.xml
+                image = itemView.findViewById(R.id.item_image_id);
+                title = itemView.findViewById(R.id.item_name);
+                time = itemView.findViewById(R.id.time_label);
+                score = itemView.findViewById(R.id.rating_label);
+                price = itemView.findViewById(R.id.price_label);
+                description = null;
             } else {
                 image = itemView.findViewById(R.id.meal_image);
                 title = itemView.findViewById(R.id.meal_name);
@@ -124,7 +123,6 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
                 description = itemView.findViewById(R.id.meal_description);
             }
 
-            // Log missing views for debugging
             if (image == null) Log.e("MealViewHolder", "image not found for viewType: " + viewType);
             if (title == null) Log.e("MealViewHolder", "title not found for viewType: " + viewType);
             if (time == null) Log.e("MealViewHolder", "time not found for viewType: " + viewType);

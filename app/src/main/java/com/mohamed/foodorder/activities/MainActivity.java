@@ -3,14 +3,17 @@ package com.mohamed.foodorder.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         mealAdapter = new MealAdapter(MealAdapter.VIEW_TYPE_MAIN);
         binding.foodList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.foodList.setAdapter(mealAdapter);
+        binding.foodList.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                outRect.right = 16; // Add spacing between cards
+            }
+        });
 
         loadUserData();
         loadMeals();
@@ -115,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, SettingActivity.class));
         });
 
-        // TODO: Implement search for binding.textView
-        // TODO: Implement click listener for binding.tvOrder
     }
 
     private void loadUserData() {

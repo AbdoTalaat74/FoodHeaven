@@ -1,5 +1,5 @@
 package com.mohamed.foodorder.helper;
 
-public interface ChangeNumberItemsListner {
+public interface ChangeNumberItemsListener {
     void onChanged();
 }

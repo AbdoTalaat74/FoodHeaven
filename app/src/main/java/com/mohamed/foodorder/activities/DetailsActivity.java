@@ -7,9 +7,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.Window;
 import android.view.WindowManager;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.mohamed.foodorder.R;
 import com.mohamed.foodorder.databinding.ActivityDetailsBinding;
 import com.mohamed.foodorder.domain.models.Meal;
@@ -28,11 +26,9 @@ public class DetailsActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityDetailsBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
-        managementCart = new ManagementCart(DetailsActivity.this);
+        managementCart = new ManagementCart(this);
         getBundle();
-        binding.ivBackArrow.setOnClickListener(v -> {
-            finish();
-        });
+        binding.ivBackArrow.setOnClickListener(v -> finish());
     }
 
     private void getBundle() {
@@ -43,7 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
             binding.ivItem.setImageBitmap(bitmap);
         } else {
-            binding.ivItem.setImageResource(R.drawable.fast_1); // Fallback image
+            binding.ivItem.setImageResource(R.drawable.fast_1);
         }
 
         binding.itemName.setText(object.getName());
@@ -54,14 +50,14 @@ public class DetailsActivity extends AppCompatActivity {
         binding.addToCart.setText("Add to cart - $" + Math.round(numberOrder * object.getPrice()));
 
         binding.plusQuantity.setOnClickListener(v -> {
-            numberOrder = numberOrder + 1;
+            numberOrder++;
             binding.quantity.setText(String.valueOf(numberOrder));
             binding.addToCart.setText("Add to cart - $" + Math.round(numberOrder * object.getPrice()));
         });
 
         binding.minusQuantity.setOnClickListener(v -> {
             if (numberOrder > 1) {
-                numberOrder = numberOrder - 1;
+                numberOrder--;
                 binding.quantity.setText(String.valueOf(numberOrder));
                 binding.addToCart.setText("Add to cart - $" + Math.round(numberOrder * object.getPrice()));
             }

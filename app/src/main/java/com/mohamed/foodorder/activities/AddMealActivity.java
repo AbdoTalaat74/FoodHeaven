@@ -154,9 +154,9 @@ public class AddMealActivity extends AppCompatActivity {
             return;
         }
 
-        String mealId = db.child("restaurants").child(restaurantId).child("mealsList").push().getKey();
+        String mealId = db.child("restaurants").child(restaurantId).child("meals").push().getKey();
         Meal meal = new Meal(mealId, name, priceValue, description, imageBase64, imageDrawable, category, ratingValue, deliveryTimeValue,100);
-        db.child("restaurants").child(restaurantId).child("mealsList").child(mealId).setValue(meal)
+        db.child("restaurants").child(restaurantId).child("meals").child(mealId).setValue(meal)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Meal added", Toast.LENGTH_SHORT).show();
                     finish();
