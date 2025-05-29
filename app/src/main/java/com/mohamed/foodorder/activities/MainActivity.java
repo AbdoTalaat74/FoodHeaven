@@ -48,12 +48,60 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        mealAdapter = new MealAdapter();
+        mealAdapter = new MealAdapter(MealAdapter.VIEW_TYPE_MAIN);
         binding.foodList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.foodList.setAdapter(mealAdapter);
 
         loadUserData();
         loadMeals();
+
+        binding.pizzaCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CategoryMealsActivity.class);
+            intent.putExtra("category", "Pizza");
+            startActivity(intent);
+        });
+
+        binding.burgerCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CategoryMealsActivity.class);
+            intent.putExtra("category", "Burger");
+            startActivity(intent);
+        });
+
+        binding.chickenCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CategoryMealsActivity.class);
+            intent.putExtra("category", "Chicken");
+            startActivity(intent);
+        });
+
+        binding.hotDogCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CategoryMealsActivity.class);
+            intent.putExtra("category", "HotDog");
+            startActivity(intent);
+        });
+
+        binding.sushiCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CategoryMealsActivity.class);
+            intent.putExtra("category", "Sushi");
+            startActivity(intent);
+        });
+
+        binding.meatCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CategoryMealsActivity.class);
+            intent.putExtra("category", "Meat");
+            startActivity(intent);
+        });
+
+        binding.drinkCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CategoryMealsActivity.class);
+            intent.putExtra("category", "Drink");
+            startActivity(intent);
+        });
+
+        binding.moreCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CategoryMealsActivity.class);
+            intent.putExtra("category", "More");
+            startActivity(intent);
+        });
 
         binding.cartMenu.setOnClickListener(v -> {
             startActivity(new Intent(this, CartActivity.class));

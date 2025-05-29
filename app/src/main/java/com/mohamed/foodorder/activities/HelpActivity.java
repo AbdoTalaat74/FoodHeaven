@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-
-import com.mohamed.foodorder.R;
+import android.view.Window;
+import android.view.WindowManager;
 import com.mohamed.foodorder.databinding.ActivityHelpBinding;
 
 public class HelpActivity extends AppCompatActivity {
@@ -16,6 +16,8 @@ public class HelpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityHelpBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 

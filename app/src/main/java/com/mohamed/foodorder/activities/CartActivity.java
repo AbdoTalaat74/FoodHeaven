@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+
 import com.mohamed.foodorder.adapters.CartListAdapter;
 import com.mohamed.foodorder.databinding.ActivityCartBinding;
 import com.mohamed.foodorder.helper.ChangeNumberItemsListner;
@@ -21,6 +24,8 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityCartBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 

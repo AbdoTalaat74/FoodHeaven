@@ -21,6 +21,9 @@
         android:theme="@style/Theme.FoodOrder"
         tools:targetApi="33">
         <activity
+            android:name=".activities.CategoryMealsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.AddMealActivity"
             android:exported="false" />
         <activity
