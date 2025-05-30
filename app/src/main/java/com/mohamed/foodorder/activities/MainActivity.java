@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
 import android.view.Window;
@@ -25,12 +27,14 @@ import com.mohamed.foodorder.databinding.ActivityMainBinding;
 import com.mohamed.foodorder.domain.models.Meal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private FirebaseAuth mAuth;
     private DatabaseReference db;
     private MealAdapter mealAdapter;
+    private List<Meal> allMeals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        allMeals = new ArrayList<>();
         mealAdapter = new MealAdapter(MealAdapter.VIEW_TYPE_MAIN);
         binding.foodList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.foodList.setAdapter(mealAdapter);
@@ -61,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        setupSearch();
         loadUserData();
         loadMeals();
 
@@ -126,6 +132,36 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void setupSearch() {
+        binding.textView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filterMeals(s.toString());
+            }
+        });
+    }
+
+    private void filterMeals(String query) {
+        List<Meal> filteredMeals = new ArrayList<>();
+        if (query.isEmpty()) {
+            filteredMeals.addAll(allMeals);
+        } else {
+            String lowerQuery = query.toLowerCase();
+            for (Meal meal : allMeals) {
+                if (meal.getName().toLowerCase().contains(lowerQuery)) {
+                    filteredMeals.add(meal);
+                }
+            }
+        }
+        mealAdapter.setMeals(filteredMeals);
+    }
+
     private void loadUserData() {
         String userId = mAuth.getCurrentUser().getUid();
         db.child("users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -162,18 +198,18 @@ public class MainActivity extends AppCompatActivity {
         db.child("restaurants").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Meal> meals = new ArrayList<>();
+                allMeals.clear();
                 for (DataSnapshot restaurantSnapshot : snapshot.getChildren()) {
                     DataSnapshot mealsSnapshot = restaurantSnapshot.child("meals");
                     for (DataSnapshot mealSnapshot : mealsSnapshot.getChildren()) {
                         Meal meal = mealSnapshot.getValue(Meal.class);
                         if (meal != null) {
                             meal.setId(mealSnapshot.getKey());
-                            meals.add(meal);
+                            allMeals.add(meal);
                         }
                     }
                 }
-                mealAdapter.setMeals(meals);
+                mealAdapter.setMeals(allMeals);
             }
 
             @Override
@@ -181,5 +217,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Error loading meals: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadMeals();
+        loadUserData();
     }
 }
