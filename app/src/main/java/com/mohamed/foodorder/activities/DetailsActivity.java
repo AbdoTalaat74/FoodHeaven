@@ -1,5 +1,6 @@
 package com.mohamed.foodorder.activities;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
         binding.ivBackArrow.setOnClickListener(v -> finish());
     }
 
+    @SuppressLint("SetTextI18n")
     private void getBundle() {
         object = (Meal) getIntent().getSerializableExtra("object");
 
@@ -48,7 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
         binding.quantity.setText(String.valueOf(numberOrder));
         binding.tvTime.setText(object.getDeliveryTime() + " min");
         binding.addToCart.setText("Add to cart - $" + Math.round(numberOrder * object.getPrice()));
-
+        binding.tvRate.setText(Double.toString(object.getRating()));
         binding.plusQuantity.setOnClickListener(v -> {
             numberOrder++;
             binding.quantity.setText(String.valueOf(numberOrder));

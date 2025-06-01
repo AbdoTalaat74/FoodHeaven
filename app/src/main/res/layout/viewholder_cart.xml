@@ -41,18 +41,6 @@
         app:layout_constraintStart_toStartOf="@id/item_name"
         app:layout_constraintTop_toBottomOf="@id/item_name" />
 
-    <TextView
-        android:id="@+id/total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="$0"
-        android:textColor="@color/green"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/item_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/item_name" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="100dp"

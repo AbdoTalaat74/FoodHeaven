@@ -44,7 +44,6 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         CartItem item = cartItems.get(position);
         holder.binding.itemName.setText(item.getName());
         holder.binding.fee.setText(String.format("$%.2f", item.getPrice())); // Unit price
-        holder.binding.total.setText(String.format("$%.2f", item.getPrice() * item.getQuantity()));
         holder.binding.quantity.setText(String.valueOf(item.getQuantity()));
 
         // Decode Base64 image
