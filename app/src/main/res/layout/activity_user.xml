@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
     android:fillViewport="true"
     tools:context=".activities.UserActivity">
 
@@ -17,7 +16,6 @@
             android:id="@+id/toolbarUserAccount"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorSurface"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -43,7 +41,6 @@
                     android:layout_marginStart="@dimen/_25sdp"
                     android:fontFamily="@font/poppins_light"
                     android:text="My Account"
-                    android:textColor="?attr/colorOnSurface"
                     android:textSize="@dimen/_16ssp"
                     app:layout_constraintBottom_toBottomOf="@id/imageCloseUserAccount"
                     app:layout_constraintStart_toEndOf="@id/imageCloseUserAccount"

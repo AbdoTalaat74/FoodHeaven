@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:backgroundTint="@color/light_gray"
+        android:backgroundTint="#42474E"
         android:elevation="@dimen/_4sdp">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -107,7 +107,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:layout_gravity="bottom"
-        android:background="@color/white"
         android:gravity="center">
 
         <LinearLayout

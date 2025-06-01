@@ -9,7 +9,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f3f3f3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +62,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Cheese Burger"
-                        android:textColor="@color/black"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -240,7 +238,6 @@
                 Made with 100% Angus beef patty and topped with melted cheddar cheese. fresh lettuce, tomato, and
                 our secret sauce, this classic burger will leave you waiting more. Served with crispy fries and a drink,
                 it's a perfect meal for any occasion."
-                    android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -263,7 +260,6 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="Quantity order"
-                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 

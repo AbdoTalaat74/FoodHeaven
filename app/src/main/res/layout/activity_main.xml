@@ -25,38 +25,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="24dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_pic"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="@dimen/_48sdp"
+                    android:layout_height="@dimen/_48sdp"
+                    android:background="@drawable/profile_img_background"
+
                     android:scaleType="centerCrop"
                     android:src="@drawable/user"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/name"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/deliver_to"
-                    app:layout_constraintStart_toEndOf="@id/user_pic"
-                    app:layout_constraintTop_toTopOf="@id/base_layout" />
-
-                <TextView
-                    android:id="@+id/location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ny_downtown_no97"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:layout_marginStart="@dimen/_6sdp"
                     app:layout_constraintBottom_toBottomOf="@id/user_pic"
-                    app:layout_constraintStart_toStartOf="@id/name"
-                    app:layout_constraintTop_toBottomOf="@id/name" />
+                    app:layout_constraintStart_toEndOf="@id/user_pic"
+                    app:layout_constraintTop_toTopOf="@id/user_pic">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/deliver_to"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ny_downtown_no97"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@id/name"
+                        app:layout_constraintTop_toBottomOf="@id/name" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -66,38 +76,30 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:background="@drawable/border_background"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/textView"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="3dp"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:drawableStart="@drawable/search"
-                    android:drawablePadding="8dp"
-                    android:ems="10"
-                    android:hint="Search for Food, Drink, etc"
-                    android:inputType="textPersonName"
-                    android:padding="8dp"
-                    android:textSize="15sp" />
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/grey" />
+                    android:layout_weight="1"
+                    android:hint="Search for Food, Drink, etc">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:src="@drawable/settings" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/search"
+                        android:drawableEnd="@drawable/settings"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -145,9 +147,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_gravity="center"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
 
                     android:orientation="horizontal">
 
@@ -283,10 +285,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_gravity="center"
                     android:layout_height="match_parent"
-
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -434,6 +435,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginVertical="@dimen/_8sdp"
                     android:text="All Available Meals"
                     android:textSize="18sp"
                     android:textStyle="bold" />

@@ -1,4 +1,4 @@
-package com.mohamed.foodorder.activities;
+    package com.mohamed.foodorder.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,7 +27,6 @@ import com.mohamed.foodorder.databinding.ActivityMainBinding;
 import com.mohamed.foodorder.domain.models.Meal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         binding.foodList.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                outRect.right = 16; // Add spacing between cards
+                outRect.right = 16;
             }
         });
 

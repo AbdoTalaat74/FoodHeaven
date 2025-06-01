@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "170278521410",
-    "firebase_url": "https://food-heaven-ea4b5-default-rtdb.firebaseio.com",
-    "project_id": "food-heaven-ea4b5",
-    "storage_bucket": "food-heaven-ea4b5.firebasestorage.app"
+    "project_number": "608784426814",
+    "firebase_url": "https://food-order-baefe-default-rtdb.firebaseio.com",
+    "project_id": "food-order-baefe",
+    "storage_bucket": "food-order-baefe.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:170278521410:android:c86ce50b1b04f2be997bdb",
+        "mobilesdk_app_id": "1:608784426814:android:8be2d87bd775c346c3ee6f",
         "android_client_info": {
           "package_name": "com.mohamed.foodorder"
         }
       },
       "oauth_client": [
         {
-          "client_id": "170278521410-6tnlfndbgd6i1kndp252e5078ms2k4tk.apps.googleusercontent.com",
+          "client_id": "608784426814-hq8g6966ebbpkiv8qqkglr98h3giqood.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDLZrum7hD286kROtKQ7hT69vAiPQrTFNA"
+          "current_key": "AIzaSyCQcStaR3f_8IlaxVodnn-1gXrWNctigl4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "170278521410-6tnlfndbgd6i1kndp252e5078ms2k4tk.apps.googleusercontent.com",
+              "client_id": "608784426814-hq8g6966ebbpkiv8qqkglr98h3giqood.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

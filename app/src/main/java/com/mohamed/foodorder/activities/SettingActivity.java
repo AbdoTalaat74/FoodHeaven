@@ -105,4 +105,10 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserData();
+    }
 }
